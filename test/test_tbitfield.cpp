@@ -251,6 +251,33 @@ TEST(TBitField, can_invert_large_bitfield)
   EXPECT_EQ(expNegBf, negBf);
 }
 
+TEST(TBitField, invert_plus_or_operator_on_different_size_bitfield) 
+{
+    const int firstSize = 5, secondSize = 10;
+    TBitField firstBf(firstSize), negFirstBf(firstSize), secondBf(secondSize), testBf(secondSize);
+    // firstBf = 11001
+    firstBf.SetBit(0);
+    firstBf.SetBit(1);
+    firstBf.SetBit(4);
+
+    // negFirstBf = 00110
+    negFirstBf = ~firstBf;
+    // secondBf =   1010100001
+    secondBf.SetBit(0);
+    secondBf.SetBit(2);
+    secondBf.SetBit(4);
+    secondBf.SetBit(9);
+
+    // testBf = 1011100001
+    testBf.SetBit(0);
+    testBf.SetBit(2);
+    testBf.SetBit(3);
+    testBf.SetBit(4);
+    testBf.SetBit(9);
+
+    EXPECT_EQ(negFirstBf | secondBf, testBf);
+}
+
 TEST(TBitField, invert_plus_and_operator_on_different_size_bitfield)
 {
   const int firstSze = 4, secondSize = 8;

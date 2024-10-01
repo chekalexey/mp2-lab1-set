@@ -51,6 +51,22 @@ TEST(TSet, can_delete_existing_element)
   EXPECT_EQ(set.IsMember(k), 0);
 }
 
+TEST(TSet, throws_when_insert_element_out_of_range)
+{
+	const int size = 2;
+	TSet set(size);
+
+	ASSERT_ANY_THROW(set.InsElem(4));
+}
+
+TEST(TSet, throws_when_delete_element_out_of_range)
+{
+	const int size = 2;
+	TSet set(size);
+
+	ASSERT_ANY_THROW(set.DelElem(4));
+}
+
 TEST(TSet, compare_two_sets_of_non_equal_sizes)
 {
   const int size1 = 4, size2 = 6;

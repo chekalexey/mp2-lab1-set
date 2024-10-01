@@ -13,7 +13,7 @@
 class TSet
 {
 private:
-  int MaxPower;       // максимальная мощность множества
+  int MaxPower = 0;       // максимальная мощность множества
   TBitField BitField; // битовое поле для хранения характеристического вектора
 public:
   TSet(int mp);
